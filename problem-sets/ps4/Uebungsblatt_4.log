@@ -1,0 +1,16 @@
+{"type":["init_ps"],"time":["2024-04-29 19:22:02"],"user":["Lorenzo Bäurle"],"umph":[1714411322.6952],"ok":[true]}
+,
+{"type":["check_chunk"],"time":["2024-04-29 19:22:02"],"user":["Lorenzo Bäurle"],"umph":[1714411322.7135],"ok":[true],"chunk":[1],"ex":[1],"e.ind":[0],"code":["library(stargazer)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-04-29 19:22:02"],"user":["Lorenzo Bäurle"],"umph":[1714411322.7965],"ok":[true],"chunk":[2],"ex":[1],"e.ind":[0],"code":["eu_makro <- read_csv(\"Data/EU_Makro.csv\")\n\n# enter your code here ...\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-04-29 19:22:02"],"user":["Lorenzo Bäurle"],"umph":[1714411322.8567],"ok":[true],"chunk":[3],"ex":[1],"e.ind":[0],"code":["eu_makro <- eu_makro %>%\n  mutate( debt_share_country_pro = debt_share_country * 100)\n  \ng1 <- eu_makro %>%\n  ggplot(aes(x = debt_share_country_pro, y = unempl)) + geom_point() + \n  xlab(\"Verschuldungsquote in %\") +\n  ylab(\"Arbeitslosenquote in %\")\ng1"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-04-29 19:22:02"],"user":["Lorenzo Bäurle"],"umph":[1714411322.863],"ok":[true],"chunk":[4],"ex":[1],"e.ind":[0],"code":["reg1 <- lm(unempl~debt_share_country_pro, data=eu_makro)\nsummary(reg1)\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-04-29 19:22:02"],"user":["Lorenzo Bäurle"],"umph":[1714411322.8692],"ok":[false],"chunk":[5],"ex":[1],"e.ind":[1],"code":["\n# Erwartete Arbeitslosenquote bei einer Verschuldungsquote von 0%\nexpected_unemployment_at_zero_debt <- round(6.894767, 3)\n\n# Ausgabe des Wertes\nexpected_unemployment_at_zero_debt\n\n"],"message":["\nOk, in chunk 1_c your command\n\n    expected_unemployment_at_zero_debt <- round(6.894767, 3)\n\nindeed yields the correct result. But you shall directly use the function '6.895', by just writing \n\n    6.895\n\nPlease change your code."]}
+,
+{"type":["check_ps"],"time":["2024-04-29 19:28:48"],"user":["Lorenzo Bäurle"],"umph":[1714411728.5101],"ok":[true]}
+,
+{"type":["check_chunk"],"time":["2024-04-29 19:28:48"],"user":["Lorenzo Bäurle"],"umph":[1714411728.546],"ok":[false],"chunk":[5],"ex":[1],"e.ind":[1],"code":["\n# Erwartete Arbeitslosenquote bei einer Verschuldungsquote von 0%\nexpected_unemployment_at_zero_debt <- 6.895\n\n# Ausgabe des Wertes\nexpected_unemployment_at_zero_debt\n\n"],"message":["\nOk, in chunk 1_c your command\n\n    expected_unemployment_at_zero_debt <- 6.895\n\nindeed yields the correct result. But you shall directly use the function '6.895', by just writing \n\n    6.895\n\nPlease change your code."]}
+,

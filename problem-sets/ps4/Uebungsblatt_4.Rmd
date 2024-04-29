@@ -1,7 +1,7 @@
 
 ```{r 'check_ps', include=FALSE}
 
-user.name = 'ENTER A USER NAME HERE'
+user.name = 'Lorenzo Bäurle'
 ```
 
 # RTutor Uebungsblatt 4 - Projektkurs
@@ -46,7 +46,7 @@ library(stargazer)
 a) Im ersten Schritt laden wir die zur Verfuegung stehenden Daten. Laden Sie die unter Daten bereitgestellten `EU_Makro.csv` Daten in R.
 
 ```{r "1_a"}
-____ <- read_csv("____")
+eu_makro <- read_csv("Data/EU_Makro.csv")
 
 # enter your code here ...
 
@@ -75,13 +75,8 @@ Auf den ersten Blick ist zu erkennen, das ein positiver Zusammenhang zwischen de
 b) Eine beliebte Methode einen Zusammenhang in einer einzelnen Zahl zusammenzufassen ist eine einfache lineare Regression mittels der Methode der kleinsten Quadrate (engl. Ordinary Least Squares OLS). Regressieren Sie in R `unempl` auf `debt_share_country_pro`. Speichern Sie das Ergebnis in der Variablen `reg1` und zeigen Sie dann eine Zusammenfassung von `reg1`. Bitte kommentieren Sie hierfuer den Code aus und ergaenzen Sie diesen: 
 
 ```{r "1_b"}
-reg1 <- lm(___~debt_share_country_pro, data=___)
-summary(___)
-
-# enter your code here ...
-
-
-# enter your code here ...
+reg1 <- lm(unempl~debt_share_country_pro, data=eu_makro)
+summary(reg1)
 
 ```
 
@@ -104,17 +99,26 @@ Geben Sie hier Ihrer Antwort gerundet auf drei Nachkommastellen ein. Achten Sie 
 
 ```{r "1_c",optional=TRUE}
 
-# enter your code here ...
+# Erwartete Arbeitslosenquote bei einer Verschuldungsquote von 0%
+expected_unemployment_at_zero_debt <- 6.895
+
+# Ausgabe des Wertes
+expected_unemployment_at_zero_debt
+
 
 ```
 
 d) Manchmal moechten wir mit den geschaetzten Koeffizienten direkt weiterrechnen. Hierfuer ist die Funktion `coef` nuetzlich. Wenden Sie in einem ersten Schritt die Funktion `coef` auf `reg1` an. Anschliessend speichern Sie bitte den ersten Koeffizienten in der Variable `b0` und den zweiten in der Variable `b1`.
 ```{r "1_d"}
 
-# enter your code here ...
+# Anwenden der Funktion coef auf reg1, um die geschätzten Koeffizienten zu erhalten
+coefficients <- coef(reg1)
 
+# Speichern des ersten Koeffizienten (Intercept) in der Variable b0
+b0 <- coefficients[1]
 
-# enter your code here ...
+# Speichern des zweiten Koeffizienten (Steigung von debt_share_country_pro) in der Variable b1
+b1 <- coefficients[2]
 
 ```
 Hier waere ein guter Zeitpunkt das Addin 'Check Problemset' auszufuehren!
