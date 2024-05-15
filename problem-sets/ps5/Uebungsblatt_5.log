@@ -268,3 +268,251 @@
 ,
 {"type":["check_chunk"],"time":["2024-05-06 23:52:44"],"user":["Lorenzo Bäurle"],"umph":[1715032364.9969],"ok":[false],"chunk":[27],"ex":[2],"e.ind":[1],"code":["\n"],"message":["\nYou have not yet made an assignment to reg1 in chunk 2_b."]}
 ,
+{"type":["init_ps"],"time":["2024-05-13 22:37:09"],"user":["Lorenzo Bäurle"],"umph":[1715632629.752],"ok":[true]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:10"],"user":["Lorenzo Bäurle"],"umph":[1715632630.0616],"ok":[true],"chunk":[1],"ex":[1],"e.ind":[0],"code":["library(wooldridge)\ndata(wage1)\nhead(wage1)\nskim(wage1)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:10"],"user":["Lorenzo Bäurle"],"umph":[1715632630.0803],"ok":[true],"chunk":[2],"ex":[1],"e.ind":[0],"code":["\n# Load the necessary library\nlibrary(wooldridge)\n\n# Load the data\ndata(wage1)\n\n# Perform the linear regression\nreg1 <- lm(wage ~ educ, data = wage1)\n\n# Display the summary of the regression model\nsummary(reg1)\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:10"],"user":["Lorenzo Bäurle"],"umph":[1715632630.0827],"ok":[true],"chunk":[3],"ex":[1],"e.ind":[0],"code":["\n\"nein\"\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:10"],"user":["Lorenzo Bäurle"],"umph":[1715632630.1],"ok":[false],"chunk":[4],"ex":[1],"e.ind":[1],"code":["wage1 %>%\n mutate(gender = ifelse(female==1,\"female\",\"male\")) %>%\n group_by(gender) %>%\n summarize(mean_educ = mean(educ, na.rm = TRUE))\n\n"],"message":["\nYou have not yet entered all correct commands in chunk 1_e."]}
+,
+{"type":["check_ps"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.5943],"ok":[true]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.6323],"ok":[true],"chunk":[5],"ex":[1],"e.ind":[0],"code":["grViz('digraph G {\n\nx [label=\"Ausbildungsjahre x\"]\ny [label=\"Stundenlohn y\"]\nw [label=\"maennlich\"]\n\nx -> y [label=\"+\"];\nw -> x [label=\"+\"];\nw -> y [label=\"+\"];\n}')"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.6374],"ok":[true],"chunk":[6],"ex":[1],"e.ind":[0],"code":["\n1\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.6491],"ok":[true],"chunk":[7],"ex":[1],"e.ind":[0],"code":["reg2 <- lm(wage ~ educ + female, data=wage1)\nsummary(reg2)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.6619],"ok":[true],"chunk":[8],"ex":[1],"e.ind":[0],"code":["grViz('digraph G {\nx -> y [label=\"+\"];\nw -> y [label=\"+\"];\n}')"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.6682],"ok":[true],"chunk":[9],"ex":[1],"e.ind":[0],"code":["\n\"unverzerrt\"\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.8053],"ok":[true],"chunk":[10],"ex":[1],"e.ind":[0],"code":["########################################\n# Beispiel 1: w hat nur Einfluss auf y\n########################################\nset.seed(123)\nn <- 10000\nbeta1 <- 2 # wahrer kausaler effekt\nw <- rnorm(n,0,1)\nx <- rnorm(n,0,1)\ny <- beta1*x + w + rnorm(n,0,1)\n\n# Regression mit w als Kontrollvariable\nreg1 <- lm(y~x+w)\n# Regression ohne w als Kontrollvariable\nreg2 <- lm(y~x)\n# Zeige Ergbenisse nebeneinander\nlibrary(stargazer)\nstargazer(reg1, reg2, type=\"text\", digits=3, keep.stat=c(\"n\"))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.8976],"ok":[true],"chunk":[11],"ex":[1],"e.ind":[0],"code":["########################################\n# Beispiel 2: w hat Einfluss auf y und x\n########################################\nset.seed(123)\nn <- 10000\nbeta1 <- 2 # wahrer kausaler effekt\nw <- rnorm(n,0,1)\nx <- rnorm(n,0,1) + w\ny <- beta1*x + w + rnorm(n,0,1)\n\n# Regression mit w als Kontrollvariable\nreg1 <- lm(y~x+w)\n# Regression ohne w als Kontrollvariable\nreg2 <- lm(y~x)\n# Zeige Ergbenisse nebeneinander\nstargazer(reg1, reg2, type=\"text\", digits=3, keep.stat=c(\"n\"))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.9003],"ok":[true],"chunk":[12],"ex":[1],"e.ind":[0],"code":["\n\"nein\"\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.9046],"ok":[true],"chunk":[13],"ex":[1],"e.ind":[0],"code":["confint(lm(y~x))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.9176],"ok":[true],"chunk":[14],"ex":[1],"e.ind":[0],"code":["\n# Direktes Berechnen und Ausgeben des 99% Konfidenzintervalls für die Regression y~x\nconfint(lm(y ~ x), level = 0.99)\n\nprint(confint(lm(y ~ x), level = 0.99))\n\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.9193],"ok":[true],"chunk":[15],"ex":[1],"e.ind":[0],"code":["cor(wage1$exper,wage1$wage)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.9207],"ok":[true],"chunk":[16],"ex":[1],"e.ind":[0],"code":["cor(wage1$exper,wage1$educ)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.9287],"ok":[true],"chunk":[17],"ex":[1],"e.ind":[0],"code":["grViz('digraph G {\n\nx [label=\"Ausbildungsjahre x\"]\ny [label=\"Stundenlohn y\"]\nw [label=\"Arbeitserfahrung\"]\n\nx -> y [label=\"+\"];\nx -> w [label=\"-\"];\nw -> y [label=\"+\"];\n}')\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.9311],"ok":[true],"chunk":[18],"ex":[1],"e.ind":[0],"code":["coef(lm(wage~educ, data=wage1))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.9338],"ok":[true],"chunk":[19],"ex":[1],"e.ind":[0],"code":["\n\"groesser\"\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.9358],"ok":[true],"chunk":[20],"ex":[1],"e.ind":[0],"code":["coef(lm(wage~educ+exper, data=wage1))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:55"],"user":["Lorenzo Bäurle"],"umph":[1715632675.9382],"ok":[true],"chunk":[21],"ex":[1],"e.ind":[0],"code":["\n0.54\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:56"],"user":["Lorenzo Bäurle"],"umph":[1715632676.1586],"ok":[true],"chunk":[22],"ex":[1],"e.ind":[0],"code":["reg1 <- lm(wage ~ educ, data = wage1)\nreg2 <- lm(wage ~ educ + female + nonwhite, data=wage1)\nreg3 <- lm(wage ~ educ + female + nonwhite + exper, data=wage1)\n\nlibrary(stargazer)\nstargazer(reg1, reg2, reg3, type = \"text\", title = \"Regressionsergebnisse\", align = TRUE)\n\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:56"],"user":["Lorenzo Bäurle"],"umph":[1715632676.2941],"ok":[true],"chunk":[23],"ex":[1],"e.ind":[0],"code":["stargazer( reg1, reg2, reg3 ,type = \"text\",  digits=2, omit.stat = c(\"f\",\"ser\"))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:56"],"user":["Lorenzo Bäurle"],"umph":[1715632676.3097],"ok":[true],"chunk":[25],"ex":[2],"e.ind":[0],"code":["\n# Laden des Datensatzes jtrain3 aus dem wooldridge Paket\nlibrary(wooldridge)\ndata(jtrain3)\n\n# Zählen der Personen, die an der Weiterbildungsmaßnahme teilgenommen haben\nn_train <- sum(jtrain3$train == 1)\n\n# Anzeigen der Anzahl\nprint(paste(\"Anzahl der Personen, die an der Weiterbildung teilgenommen haben:\", n_train))\n\n# Zeige den Wert von n_train\nn_train\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:56"],"user":["Lorenzo Bäurle"],"umph":[1715632676.3129],"ok":[true],"chunk":[26],"ex":[2],"e.ind":[0],"code":["\n2\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:37:56"],"user":["Lorenzo Bäurle"],"umph":[1715632676.3152],"ok":[false],"chunk":[27],"ex":[2],"e.ind":[1],"code":["\n"],"message":["\nYou have not yet made an assignment to reg1 in chunk 2_b."]}
+,
+{"type":["grade_ps"],"time":["2024-05-13 22:38:15"],"user":["Lorenzo Bäurle"],"umph":[1715632695.8527],"ok":[true]}
+,
+{"type":["init_ps"],"time":["2024-05-13 22:38:15"],"user":["Lorenzo Bäurle"],"umph":[1715632695.8736],"ok":[true]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:38:16"],"user":["Lorenzo Bäurle"],"umph":[1715632696.1298],"ok":[true],"chunk":[1],"ex":[1],"e.ind":[0],"code":["library(wooldridge)\ndata(wage1)\nhead(wage1)\nskim(wage1)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:38:16"],"user":["Lorenzo Bäurle"],"umph":[1715632696.1388],"ok":[true],"chunk":[2],"ex":[1],"e.ind":[0],"code":["\n# Load the necessary library\nlibrary(wooldridge)\n\n# Load the data\ndata(wage1)\n\n# Perform the linear regression\nreg1 <- lm(wage ~ educ, data = wage1)\n\n# Display the summary of the regression model\nsummary(reg1)\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:38:16"],"user":["Lorenzo Bäurle"],"umph":[1715632696.1413],"ok":[true],"chunk":[3],"ex":[1],"e.ind":[0],"code":["\n\"nein\"\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:38:16"],"user":["Lorenzo Bäurle"],"umph":[1715632696.1626],"ok":[false],"chunk":[4],"ex":[1],"e.ind":[1],"code":["wage1 %>%\n mutate(gender = ifelse(female==1,\"female\",\"male\")) %>%\n group_by(gender) %>%\n summarize(mean_educ = mean(educ, na.rm = TRUE))\n\n"],"message":["\nYou have not yet entered all correct commands in chunk 1_e."]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:38:16"],"user":["Lorenzo Bäurle"],"umph":[1715632696.3207],"ok":[true],"chunk":[24],"ex":[2],"e.ind":[0],"code":["help(jtrain3)\ndata(jtrain3)\nhead(jtrain3)\nskim(jtrain3)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:38:16"],"user":["Lorenzo Bäurle"],"umph":[1715632696.3323],"ok":[true],"chunk":[25],"ex":[2],"e.ind":[0],"code":["\n# Laden des Datensatzes jtrain3 aus dem wooldridge Paket\nlibrary(wooldridge)\ndata(jtrain3)\n\n# Zählen der Personen, die an der Weiterbildungsmaßnahme teilgenommen haben\nn_train <- sum(jtrain3$train == 1)\n\n# Anzeigen der Anzahl\nprint(paste(\"Anzahl der Personen, die an der Weiterbildung teilgenommen haben:\", n_train))\n\n# Zeige den Wert von n_train\nn_train\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:38:16"],"user":["Lorenzo Bäurle"],"umph":[1715632696.3429],"ok":[true],"chunk":[26],"ex":[2],"e.ind":[0],"code":["\n2\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:38:16"],"user":["Lorenzo Bäurle"],"umph":[1715632696.3465],"ok":[false],"chunk":[27],"ex":[2],"e.ind":[1],"code":["\n"],"message":["\nYou have not yet made an assignment to reg1 in chunk 2_b."]}
+,
+{"type":["grade_ps"],"time":["2024-05-13 22:41:44"],"user":["Lorenzo Bäurle"],"umph":[1715632904.0333],"ok":[true]}
+,
+{"type":["init_ps"],"time":["2024-05-13 22:41:44"],"user":["Lorenzo Bäurle"],"umph":[1715632904.0544],"ok":[true]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:41:44"],"user":["Lorenzo Bäurle"],"umph":[1715632904.3275],"ok":[true],"chunk":[1],"ex":[1],"e.ind":[0],"code":["library(wooldridge)\ndata(wage1)\nhead(wage1)\nskim(wage1)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:41:44"],"user":["Lorenzo Bäurle"],"umph":[1715632904.3369],"ok":[true],"chunk":[2],"ex":[1],"e.ind":[0],"code":["\n# Load the necessary library\nlibrary(wooldridge)\n\n# Load the data\ndata(wage1)\n\n# Perform the linear regression\nreg1 <- lm(wage ~ educ, data = wage1)\n\n# Display the summary of the regression model\nsummary(reg1)\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:41:44"],"user":["Lorenzo Bäurle"],"umph":[1715632904.3392],"ok":[true],"chunk":[3],"ex":[1],"e.ind":[0],"code":["\n\"nein\"\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:41:44"],"user":["Lorenzo Bäurle"],"umph":[1715632904.3542],"ok":[false],"chunk":[4],"ex":[1],"e.ind":[1],"code":["wage1 %>%\n mutate(gender = ifelse(female==1,\"female\",\"male\")) %>%\n group_by(gender) %>%\n summarize(mean_educ = mean(educ, na.rm = TRUE))\n\n"],"message":["\nYou have not yet entered all correct commands in chunk 1_e."]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:41:44"],"user":["Lorenzo Bäurle"],"umph":[1715632904.621],"ok":[true],"chunk":[24],"ex":[2],"e.ind":[0],"code":["help(jtrain3)\ndata(jtrain3)\nhead(jtrain3)\nskim(jtrain3)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:41:44"],"user":["Lorenzo Bäurle"],"umph":[1715632904.6321],"ok":[true],"chunk":[25],"ex":[2],"e.ind":[0],"code":["\n# Laden des Datensatzes jtrain3 aus dem wooldridge Paket\nlibrary(wooldridge)\ndata(jtrain3)\n\n# Zählen der Personen, die an der Weiterbildungsmaßnahme teilgenommen haben\nn_train <- sum(jtrain3$train == 1)\n\n# Anzeigen der Anzahl\nprint(paste(\"Anzahl der Personen, die an der Weiterbildung teilgenommen haben:\", n_train))\n\n# Zeige den Wert von n_train\nn_train\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:41:44"],"user":["Lorenzo Bäurle"],"umph":[1715632904.6348],"ok":[true],"chunk":[26],"ex":[2],"e.ind":[0],"code":["\n2\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:41:44"],"user":["Lorenzo Bäurle"],"umph":[1715632904.6369],"ok":[false],"chunk":[27],"ex":[2],"e.ind":[1],"code":["\n"],"message":["\nYou have not yet made an assignment to reg1 in chunk 2_b."]}
+,
+{"type":["check_ps"],"time":["2024-05-13 22:43:49"],"user":["Lorenzo Bäurle"],"umph":[1715633029.7873],"ok":[true]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:49"],"user":["Lorenzo Bäurle"],"umph":[1715633029.8125],"ok":[true],"chunk":[4],"ex":[1],"e.ind":[0],"code":["wage1 %>%\n mutate(gender = ifelse(female == 1,\"female\",\"male\")) %>%\n group_by(gender) %>%\n summarize(mean(educ))\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:49"],"user":["Lorenzo Bäurle"],"umph":[1715633029.8231],"ok":[true],"chunk":[5],"ex":[1],"e.ind":[0],"code":["grViz('digraph G {\n\nx [label=\"Ausbildungsjahre x\"]\ny [label=\"Stundenlohn y\"]\nw [label=\"maennlich\"]\n\nx -> y [label=\"+\"];\nw -> x [label=\"+\"];\nw -> y [label=\"+\"];\n}')"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:49"],"user":["Lorenzo Bäurle"],"umph":[1715633029.8265],"ok":[true],"chunk":[6],"ex":[1],"e.ind":[0],"code":["\n1\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:49"],"user":["Lorenzo Bäurle"],"umph":[1715633029.8326],"ok":[true],"chunk":[7],"ex":[1],"e.ind":[0],"code":["reg2 <- lm(wage ~ educ + female, data=wage1)\nsummary(reg2)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:49"],"user":["Lorenzo Bäurle"],"umph":[1715633029.842],"ok":[true],"chunk":[8],"ex":[1],"e.ind":[0],"code":["grViz('digraph G {\nx -> y [label=\"+\"];\nw -> y [label=\"+\"];\n}')"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:49"],"user":["Lorenzo Bäurle"],"umph":[1715633029.8465],"ok":[true],"chunk":[9],"ex":[1],"e.ind":[0],"code":["\n\"unverzerrt\"\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:49"],"user":["Lorenzo Bäurle"],"umph":[1715633029.955],"ok":[true],"chunk":[10],"ex":[1],"e.ind":[0],"code":["########################################\n# Beispiel 1: w hat nur Einfluss auf y\n########################################\nset.seed(123)\nn <- 10000\nbeta1 <- 2 # wahrer kausaler effekt\nw <- rnorm(n,0,1)\nx <- rnorm(n,0,1)\ny <- beta1*x + w + rnorm(n,0,1)\n\n# Regression mit w als Kontrollvariable\nreg1 <- lm(y~x+w)\n# Regression ohne w als Kontrollvariable\nreg2 <- lm(y~x)\n# Zeige Ergbenisse nebeneinander\nlibrary(stargazer)\nstargazer(reg1, reg2, type=\"text\", digits=3, keep.stat=c(\"n\"))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:50"],"user":["Lorenzo Bäurle"],"umph":[1715633030.0504],"ok":[true],"chunk":[11],"ex":[1],"e.ind":[0],"code":["########################################\n# Beispiel 2: w hat Einfluss auf y und x\n########################################\nset.seed(123)\nn <- 10000\nbeta1 <- 2 # wahrer kausaler effekt\nw <- rnorm(n,0,1)\nx <- rnorm(n,0,1) + w\ny <- beta1*x + w + rnorm(n,0,1)\n\n# Regression mit w als Kontrollvariable\nreg1 <- lm(y~x+w)\n# Regression ohne w als Kontrollvariable\nreg2 <- lm(y~x)\n# Zeige Ergbenisse nebeneinander\nstargazer(reg1, reg2, type=\"text\", digits=3, keep.stat=c(\"n\"))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:50"],"user":["Lorenzo Bäurle"],"umph":[1715633030.0532],"ok":[true],"chunk":[12],"ex":[1],"e.ind":[0],"code":["\n\"nein\"\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:50"],"user":["Lorenzo Bäurle"],"umph":[1715633030.0576],"ok":[true],"chunk":[13],"ex":[1],"e.ind":[0],"code":["confint(lm(y~x))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:50"],"user":["Lorenzo Bäurle"],"umph":[1715633030.0687],"ok":[true],"chunk":[14],"ex":[1],"e.ind":[0],"code":["\n# Direktes Berechnen und Ausgeben des 99% Konfidenzintervalls für die Regression y~x\nconfint(lm(y ~ x), level = 0.99)\n\nprint(confint(lm(y ~ x), level = 0.99))\n\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:50"],"user":["Lorenzo Bäurle"],"umph":[1715633030.0702],"ok":[true],"chunk":[15],"ex":[1],"e.ind":[0],"code":["cor(wage1$exper,wage1$wage)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:50"],"user":["Lorenzo Bäurle"],"umph":[1715633030.0716],"ok":[true],"chunk":[16],"ex":[1],"e.ind":[0],"code":["cor(wage1$exper,wage1$educ)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:50"],"user":["Lorenzo Bäurle"],"umph":[1715633030.0802],"ok":[true],"chunk":[17],"ex":[1],"e.ind":[0],"code":["grViz('digraph G {\n\nx [label=\"Ausbildungsjahre x\"]\ny [label=\"Stundenlohn y\"]\nw [label=\"Arbeitserfahrung\"]\n\nx -> y [label=\"+\"];\nx -> w [label=\"-\"];\nw -> y [label=\"+\"];\n}')\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:50"],"user":["Lorenzo Bäurle"],"umph":[1715633030.0824],"ok":[true],"chunk":[18],"ex":[1],"e.ind":[0],"code":["coef(lm(wage~educ, data=wage1))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:50"],"user":["Lorenzo Bäurle"],"umph":[1715633030.0848],"ok":[true],"chunk":[19],"ex":[1],"e.ind":[0],"code":["\n\"groesser\"\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:50"],"user":["Lorenzo Bäurle"],"umph":[1715633030.0867],"ok":[true],"chunk":[20],"ex":[1],"e.ind":[0],"code":["coef(lm(wage~educ+exper, data=wage1))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:50"],"user":["Lorenzo Bäurle"],"umph":[1715633030.089],"ok":[true],"chunk":[21],"ex":[1],"e.ind":[0],"code":["\n0.54\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:50"],"user":["Lorenzo Bäurle"],"umph":[1715633030.3105],"ok":[true],"chunk":[22],"ex":[1],"e.ind":[0],"code":["reg1 <- lm(wage ~ educ, data = wage1)\nreg2 <- lm(wage ~ educ + female + nonwhite, data=wage1)\nreg3 <- lm(wage ~ educ + female + nonwhite + exper, data=wage1)\n\nlibrary(stargazer)\nstargazer(reg1, reg2, reg3, type = \"text\", title = \"Regressionsergebnisse\", align = TRUE)\n\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:50"],"user":["Lorenzo Bäurle"],"umph":[1715633030.4469],"ok":[true],"chunk":[23],"ex":[1],"e.ind":[0],"code":["stargazer( reg1, reg2, reg3 ,type = \"text\",  digits=2, omit.stat = c(\"f\",\"ser\"))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:43:50"],"user":["Lorenzo Bäurle"],"umph":[1715633030.4502],"ok":[false],"chunk":[27],"ex":[2],"e.ind":[1],"code":["\n"],"message":["\nYou have not yet made an assignment to reg1 in chunk 2_b."]}
+,
+{"type":["check_ps"],"time":["2024-05-13 22:47:32"],"user":["Lorenzo Bäurle"],"umph":[1715633252.2466],"ok":[true]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:47:32"],"user":["Lorenzo Bäurle"],"umph":[1715633252.2585],"ok":[true],"chunk":[25],"ex":[2],"e.ind":[0],"code":["\nn_train <- sum(jtrain3$train, na.rm = TRUE)\nn_train\n\n\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:47:32"],"user":["Lorenzo Bäurle"],"umph":[1715633252.2627],"ok":[true],"chunk":[26],"ex":[2],"e.ind":[0],"code":["\n2\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:47:32"],"user":["Lorenzo Bäurle"],"umph":[1715633252.2663],"ok":[false],"chunk":[27],"ex":[2],"e.ind":[1],"code":["\n"],"message":["\nYou have not yet made an assignment to reg1 in chunk 2_b."]}
+,
+{"type":["check_ps"],"time":["2024-05-13 22:50:47"],"user":["Lorenzo Bäurle"],"umph":[1715633447.4914],"ok":[true]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:50:47"],"user":["Lorenzo Bäurle"],"umph":[1715633447.5088],"ok":[true],"chunk":[27],"ex":[2],"e.ind":[0],"code":["reg1 <- lm(unem78 ~ train, data=jtrain3)\nsummary(reg1)\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:50:47"],"user":["Lorenzo Bäurle"],"umph":[1715633447.528],"ok":[true],"chunk":[28],"ex":[2],"e.ind":[0],"code":["jtrain3 %>% \n  group_by(unem75) %>%  \n  summarize(mean(train), mean(unem78))\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:50:47"],"user":["Lorenzo Bäurle"],"umph":[1715633447.5434],"ok":[true],"chunk":[29],"ex":[2],"e.ind":[0],"code":["library(DiagrammeR)\ngrViz('digraph G {\n\nx [label=\"Weiterbildung in 1977\"]\ny [label=\"Arbeitslos in 1978\"]\nw [label=\"Arbeitslos in 1975\"]\n\nx -> y [label=\"?\"]\nw -> x [label=\"+\"]\nw -> y [label=\"+\"]\n}')"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:50:47"],"user":["Lorenzo Bäurle"],"umph":[1715633447.5475],"ok":[true],"chunk":[30],"ex":[2],"e.ind":[0],"code":["\n\"kleiner\"\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:50:47"],"user":["Lorenzo Bäurle"],"umph":[1715633447.694],"ok":[true],"chunk":[31],"ex":[2],"e.ind":[0],"code":["\n# Sicherstellen, dass der Datensatz verfügbar ist\ndata(jtrain3)\n\n# Durchführen der Regression mit 'unem78' auf 'train'\nreg1 <- lm(unem78 ~ train, data = jtrain3)\n\n# Durchführen der Regression mit 'unem78' auf 'train' und 'unem75'\nreg2 <- lm(unem78 ~ train + unem75, data = jtrain3)\n\n# Anzeigen der Ergebnisse von reg1 und reg2 nebeneinander mit stargazer\nstargazer(reg1, reg2, type = \"text\", title = \"Vergleich der Regressionsmodelle\")\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:50:47"],"user":["Lorenzo Bäurle"],"umph":[1715633447.7053],"ok":[true],"chunk":[32],"ex":[2],"e.ind":[0],"code":["\n# Laden des Datensatzes\ndata(jtrain3)\n\n# Erstellen von jtrain3_la für Langzeitarbeitslose\njtrain3_la <- jtrain3 %>% \n  filter(unem75 == 1)\n\n# Erstellen von jtrain3_ka für Kurzzeitarbeitslose oder Nicht-Arbeitslose\njtrain3_ka <- jtrain3 %>% \n  filter(unem75 == 0)\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:50:47"],"user":["Lorenzo Bäurle"],"umph":[1715633447.8341],"ok":[true],"chunk":[33],"ex":[2],"e.ind":[0],"code":["\n# Laden des Datensatzes, falls noch nicht geladen\ndata(jtrain3)\n\n# Erstellen der Subsets für Langzeitarbeitslose und Nicht-Langzeitarbeitslose\njtrain3_la <- subset(jtrain3, unem75 == 1)\njtrain3_ka <- subset(jtrain3, unem75 == 0)\n\n# Durchführen der linearen Regressionen\nreg_la <- lm(unem78 ~ train, data = jtrain3_la)\nreg_ka <- lm(unem78 ~ train, data = jtrain3_ka)\n\nstargazer(reg1, reg2, reg_la, reg_ka,type=\"text\",keep.stat=c(\"n\"), column.labels = c(\"alle\",\"alle\", \"Lang Alo\",\"Kurz Alo\") )"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:50:48"],"user":["Lorenzo Bäurle"],"umph":[1715633448.09],"ok":[true],"chunk":[34],"ex":[2],"e.ind":[0],"code":["reg3 <- lm(unem78 ~ train + unem75 + train:unem75 , data=jtrain3)\nstargazer(reg_la, reg_ka, reg3, type=\"text\",keep.stat=c(\"n\"), column.labels = c(\"Lang Alo\",\"Kurz Alo\", \"alle\") )"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:50:48"],"user":["Lorenzo Bäurle"],"umph":[1715633448.0945],"ok":[false],"chunk":[35],"ex":[2],"e.ind":[1],"code":["\n\"ja\"\n"],"message":["\nYou have not yet entered all correct commands in chunk 2_f_2."]}
+,
+{"type":["check_ps"],"time":["2024-05-13 22:52:18"],"user":["Lorenzo Bäurle"],"umph":[1715633538.6093],"ok":[true]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:18"],"user":["Lorenzo Bäurle"],"umph":[1715633538.6441],"ok":[true],"chunk":[35],"ex":[2],"e.ind":[0],"code":["\n\"nein\"\n"],"message":[""]}
+,
+{"type":["check_ps"],"time":["2024-05-13 22:52:20"],"user":["Lorenzo Bäurle"],"umph":[1715633540.7555],"ok":[true]}
+,
+{"type":["grade_ps"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.1227],"ok":[true]}
+,
+{"type":["init_ps"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.1427],"ok":[true]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.4242],"ok":[true],"chunk":[1],"ex":[1],"e.ind":[0],"code":["library(wooldridge)\ndata(wage1)\nhead(wage1)\nskim(wage1)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.4328],"ok":[true],"chunk":[2],"ex":[1],"e.ind":[0],"code":["\n# Load the necessary library\nlibrary(wooldridge)\n\n# Load the data\ndata(wage1)\n\n# Perform the linear regression\nreg1 <- lm(wage ~ educ, data = wage1)\n\n# Display the summary of the regression model\nsummary(reg1)\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.4355],"ok":[true],"chunk":[3],"ex":[1],"e.ind":[0],"code":["\n\"nein\"\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.4506],"ok":[true],"chunk":[4],"ex":[1],"e.ind":[0],"code":["wage1 %>%\n mutate(gender = ifelse(female == 1,\"female\",\"male\")) %>%\n group_by(gender) %>%\n summarize(mean(educ))\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.4635],"ok":[true],"chunk":[5],"ex":[1],"e.ind":[0],"code":["grViz('digraph G {\n\nx [label=\"Ausbildungsjahre x\"]\ny [label=\"Stundenlohn y\"]\nw [label=\"maennlich\"]\n\nx -> y [label=\"+\"];\nw -> x [label=\"+\"];\nw -> y [label=\"+\"];\n}')"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.4661],"ok":[true],"chunk":[6],"ex":[1],"e.ind":[0],"code":["\n1\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.4716],"ok":[true],"chunk":[7],"ex":[1],"e.ind":[0],"code":["reg2 <- lm(wage ~ educ + female, data=wage1)\nsummary(reg2)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.4809],"ok":[true],"chunk":[8],"ex":[1],"e.ind":[0],"code":["grViz('digraph G {\nx -> y [label=\"+\"];\nw -> y [label=\"+\"];\n}')"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.4837],"ok":[true],"chunk":[9],"ex":[1],"e.ind":[0],"code":["\n\"unverzerrt\"\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.5756],"ok":[true],"chunk":[10],"ex":[1],"e.ind":[0],"code":["########################################\n# Beispiel 1: w hat nur Einfluss auf y\n########################################\nset.seed(123)\nn <- 10000\nbeta1 <- 2 # wahrer kausaler effekt\nw <- rnorm(n,0,1)\nx <- rnorm(n,0,1)\ny <- beta1*x + w + rnorm(n,0,1)\n\n# Regression mit w als Kontrollvariable\nreg1 <- lm(y~x+w)\n# Regression ohne w als Kontrollvariable\nreg2 <- lm(y~x)\n# Zeige Ergbenisse nebeneinander\nlibrary(stargazer)\nstargazer(reg1, reg2, type=\"text\", digits=3, keep.stat=c(\"n\"))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.6702],"ok":[true],"chunk":[11],"ex":[1],"e.ind":[0],"code":["########################################\n# Beispiel 2: w hat Einfluss auf y und x\n########################################\nset.seed(123)\nn <- 10000\nbeta1 <- 2 # wahrer kausaler effekt\nw <- rnorm(n,0,1)\nx <- rnorm(n,0,1) + w\ny <- beta1*x + w + rnorm(n,0,1)\n\n# Regression mit w als Kontrollvariable\nreg1 <- lm(y~x+w)\n# Regression ohne w als Kontrollvariable\nreg2 <- lm(y~x)\n# Zeige Ergbenisse nebeneinander\nstargazer(reg1, reg2, type=\"text\", digits=3, keep.stat=c(\"n\"))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.6733],"ok":[true],"chunk":[12],"ex":[1],"e.ind":[0],"code":["\n\"nein\"\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.6771],"ok":[true],"chunk":[13],"ex":[1],"e.ind":[0],"code":["confint(lm(y~x))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.6897],"ok":[true],"chunk":[14],"ex":[1],"e.ind":[0],"code":["\n# Direktes Berechnen und Ausgeben des 99% Konfidenzintervalls für die Regression y~x\nconfint(lm(y ~ x), level = 0.99)\n\nprint(confint(lm(y ~ x), level = 0.99))\n\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.6916],"ok":[true],"chunk":[15],"ex":[1],"e.ind":[0],"code":["cor(wage1$exper,wage1$wage)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.693],"ok":[true],"chunk":[16],"ex":[1],"e.ind":[0],"code":["cor(wage1$exper,wage1$educ)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.7007],"ok":[true],"chunk":[17],"ex":[1],"e.ind":[0],"code":["grViz('digraph G {\n\nx [label=\"Ausbildungsjahre x\"]\ny [label=\"Stundenlohn y\"]\nw [label=\"Arbeitserfahrung\"]\n\nx -> y [label=\"+\"];\nx -> w [label=\"-\"];\nw -> y [label=\"+\"];\n}')\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.7024],"ok":[true],"chunk":[18],"ex":[1],"e.ind":[0],"code":["coef(lm(wage~educ, data=wage1))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.7055],"ok":[true],"chunk":[19],"ex":[1],"e.ind":[0],"code":["\n\"groesser\"\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.7077],"ok":[true],"chunk":[20],"ex":[1],"e.ind":[0],"code":["coef(lm(wage~educ+exper, data=wage1))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.711],"ok":[true],"chunk":[21],"ex":[1],"e.ind":[0],"code":["\n0.54\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:48"],"user":["Lorenzo Bäurle"],"umph":[1715633568.928],"ok":[true],"chunk":[22],"ex":[1],"e.ind":[0],"code":["reg1 <- lm(wage ~ educ, data = wage1)\nreg2 <- lm(wage ~ educ + female + nonwhite, data=wage1)\nreg3 <- lm(wage ~ educ + female + nonwhite + exper, data=wage1)\n\nlibrary(stargazer)\nstargazer(reg1, reg2, reg3, type = \"text\", title = \"Regressionsergebnisse\", align = TRUE)\n\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:49"],"user":["Lorenzo Bäurle"],"umph":[1715633569.0644],"ok":[true],"chunk":[23],"ex":[1],"e.ind":[0],"code":["stargazer( reg1, reg2, reg3 ,type = \"text\",  digits=2, omit.stat = c(\"f\",\"ser\"))"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:49"],"user":["Lorenzo Bäurle"],"umph":[1715633569.2165],"ok":[true],"chunk":[24],"ex":[2],"e.ind":[0],"code":["help(jtrain3)\ndata(jtrain3)\nhead(jtrain3)\nskim(jtrain3)"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:49"],"user":["Lorenzo Bäurle"],"umph":[1715633569.2206],"ok":[true],"chunk":[25],"ex":[2],"e.ind":[0],"code":["\nn_train <- sum(jtrain3$train, na.rm = TRUE)\nn_train\n\n\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:49"],"user":["Lorenzo Bäurle"],"umph":[1715633569.2232],"ok":[true],"chunk":[26],"ex":[2],"e.ind":[0],"code":["\n2\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:49"],"user":["Lorenzo Bäurle"],"umph":[1715633569.2302],"ok":[true],"chunk":[27],"ex":[2],"e.ind":[0],"code":["reg1 <- lm(unem78 ~ train, data=jtrain3)\nsummary(reg1)\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:49"],"user":["Lorenzo Bäurle"],"umph":[1715633569.2631],"ok":[true],"chunk":[28],"ex":[2],"e.ind":[0],"code":["jtrain3 %>% \n  group_by(unem75) %>%  \n  summarize(mean(train), mean(unem78))\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:49"],"user":["Lorenzo Bäurle"],"umph":[1715633569.2722],"ok":[true],"chunk":[29],"ex":[2],"e.ind":[0],"code":["library(DiagrammeR)\ngrViz('digraph G {\n\nx [label=\"Weiterbildung in 1977\"]\ny [label=\"Arbeitslos in 1978\"]\nw [label=\"Arbeitslos in 1975\"]\n\nx -> y [label=\"?\"]\nw -> x [label=\"+\"]\nw -> y [label=\"+\"]\n}')"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:49"],"user":["Lorenzo Bäurle"],"umph":[1715633569.2751],"ok":[true],"chunk":[30],"ex":[2],"e.ind":[0],"code":["\n\"kleiner\"\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:49"],"user":["Lorenzo Bäurle"],"umph":[1715633569.4142],"ok":[true],"chunk":[31],"ex":[2],"e.ind":[0],"code":["\n# Sicherstellen, dass der Datensatz verfügbar ist\ndata(jtrain3)\n\n# Durchführen der Regression mit 'unem78' auf 'train'\nreg1 <- lm(unem78 ~ train, data = jtrain3)\n\n# Durchführen der Regression mit 'unem78' auf 'train' und 'unem75'\nreg2 <- lm(unem78 ~ train + unem75, data = jtrain3)\n\n# Anzeigen der Ergebnisse von reg1 und reg2 nebeneinander mit stargazer\nstargazer(reg1, reg2, type = \"text\", title = \"Vergleich der Regressionsmodelle\")\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:49"],"user":["Lorenzo Bäurle"],"umph":[1715633569.4288],"ok":[true],"chunk":[32],"ex":[2],"e.ind":[0],"code":["\n# Laden des Datensatzes\ndata(jtrain3)\n\n# Erstellen von jtrain3_la für Langzeitarbeitslose\njtrain3_la <- jtrain3 %>% \n  filter(unem75 == 1)\n\n# Erstellen von jtrain3_ka für Kurzzeitarbeitslose oder Nicht-Arbeitslose\njtrain3_ka <- jtrain3 %>% \n  filter(unem75 == 0)\n\n"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:49"],"user":["Lorenzo Bäurle"],"umph":[1715633569.5855],"ok":[true],"chunk":[33],"ex":[2],"e.ind":[0],"code":["\n# Laden des Datensatzes, falls noch nicht geladen\ndata(jtrain3)\n\n# Erstellen der Subsets für Langzeitarbeitslose und Nicht-Langzeitarbeitslose\njtrain3_la <- subset(jtrain3, unem75 == 1)\njtrain3_ka <- subset(jtrain3, unem75 == 0)\n\n# Durchführen der linearen Regressionen\nreg_la <- lm(unem78 ~ train, data = jtrain3_la)\nreg_ka <- lm(unem78 ~ train, data = jtrain3_ka)\n\nstargazer(reg1, reg2, reg_la, reg_ka,type=\"text\",keep.stat=c(\"n\"), column.labels = c(\"alle\",\"alle\", \"Lang Alo\",\"Kurz Alo\") )"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:49"],"user":["Lorenzo Bäurle"],"umph":[1715633569.7086],"ok":[true],"chunk":[34],"ex":[2],"e.ind":[0],"code":["reg3 <- lm(unem78 ~ train + unem75 + train:unem75 , data=jtrain3)\nstargazer(reg_la, reg_ka, reg3, type=\"text\",keep.stat=c(\"n\"), column.labels = c(\"Lang Alo\",\"Kurz Alo\", \"alle\") )"],"message":[""]}
+,
+{"type":["check_chunk"],"time":["2024-05-13 22:52:49"],"user":["Lorenzo Bäurle"],"umph":[1715633569.7118],"ok":[true],"chunk":[35],"ex":[2],"e.ind":[0],"code":["\n\"nein\"\n"],"message":[""]}
+,

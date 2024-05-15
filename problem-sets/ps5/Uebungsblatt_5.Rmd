@@ -97,9 +97,9 @@ Vervollstaendigen Sie den Code and der Stelle ___, um die durchschnittlichen Aus
 
 ```{r "1_e",optional=TRUE}
 wage1 %>%
- mutate(gender = ifelse(female==1,"female","male")) %>%
+ mutate(gender = ifelse(female == 1,"female","male")) %>%
  group_by(gender) %>%
- summarize(mean_educ = mean(educ, na.rm = TRUE))
+ summarize(mean(educ))
 
 
 ```
@@ -380,18 +380,10 @@ Als kleine Voruebung, speichern Sie in der Variablen `n_train` die Zahl der Arbe
 
 ```{r "2_a_2"}
 
-# Laden des Datensatzes jtrain3 aus dem wooldridge Paket
-library(wooldridge)
-data(jtrain3)
-
-# Zählen der Personen, die an der Weiterbildungsmaßnahme teilgenommen haben
-n_train <- sum(jtrain3$train == 1)
-
-# Anzeigen der Anzahl
-print(paste("Anzahl der Personen, die an der Weiterbildung teilgenommen haben:", n_train))
-
-# Zeige den Wert von n_train
+n_train <- sum(jtrain3$train, na.rm = TRUE)
 n_train
+
+
 
 
 ```
@@ -418,7 +410,8 @@ Wir wuerden schon hoffen, dass eine Weiterbildungsmassnahme die Wahrscheinlichke
 b) Fuehren Sie eine lineare Regression (mittels OLS) mit x=`train` und y=`unem78` (Arbeitslosigkeit im Jahr 1978) durch. Speichern sie diese als `reg1` und zeigen Sie einen `summary` davon.
 
 ```{r "2_b"}
-
+reg1 <- lm(unem78 ~ train, data=jtrain3)
+summary(reg1)
 
 ```
 Hier waere ein guter Zeitpunkt das Addin 'Check Problemset' auszufuehren!
@@ -431,10 +424,7 @@ c) Ergaenzen Sie folgenden Code um die durchschnittliche Teilnahme an Weiterbild
 ```{r "2_c"}
 jtrain3 %>% 
   group_by(unem75) %>%  
-  summarize(
-    Average_Training_Participation = mean(train, na.rm = TRUE), 
-    Unemployment_Rate_1978 = mean(unem78, na.rm = TRUE)  
-  )
+  summarize(mean(train), mean(unem78))
 
 
 ```
@@ -584,7 +574,7 @@ Meinen Sie dieses Design loest die meisten relevanten Selektionsproblem und erla
 
 ```{r "2_f_2"}
 
-"ja"
+"nein"
 
 ```
 Hier waere ein guter Zeitpunkt das Addin 'Check Problemset' auszufuehren!
